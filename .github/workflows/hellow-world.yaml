@@ -22,3 +22,21 @@ jobs:
     steps:
       - name: Goodbye
         run: echo "Goodbye"
+
+  comment-with-api:
+       runs-on: unbuntu-latest
+       steps: 
+           - name: "Creare comment with api"
+             run: |
+                gh api -X POST \
+                  https://.api.github.com/repo/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
+                  -f body="
+                     Comment but from the API call not action
+                     "
+                env:
+                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                 ORGANIZATION: ${{ github.event.organisation.name }}
+                 REPOSITORY: ${{ github.event.repository.name }}
+                 ISSUE_NUMBER: ${{ github.event.issue.number}}
+                    
+                  
