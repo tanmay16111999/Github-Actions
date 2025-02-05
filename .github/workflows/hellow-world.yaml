@@ -22,5 +22,3 @@ jobs:
     steps:
       - name: Goodbye
         run: echo "Goodbye"
-
-            
